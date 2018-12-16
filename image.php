@@ -1,22 +1,5 @@
 <?php
 
-/**
- *  +-------------+-----------------+-----------+------------------+
- *  |   Author    |      Date       |  version  |   E-mail         |
- *  +-------------+-----------------+-----------+------------------+
- *  |  Tao lifeng | 2018/3/28 14:48 |   1.0     | 742592958@qq.com |
- *  +-------------+-----------------+-----------+------------------+
- *  |                       Abstract                               |
- *  +--------------------------------------------------------------+
- *  |   This is an image processing class, can be compressed image,|
- *  |   verification code and other operations.                    |
- *  +--------------------------------------------------------------+
- */
-
-
-namespace GD\tools;
-
-
 class Image
 {
 
@@ -112,6 +95,10 @@ class Image
      */
     public function compress($width, $height, $type = 1)
     {
+    	if (empty($width) && empty($height)) {
+    		$width = $this->old_width;
+    		$height = $this->old_height;
+    	}
         switch ($type) {
             case 1:
             default:
@@ -157,6 +144,9 @@ class Image
      */
     public function save($path_dir, $type = 2)
     {
+    	if (!is_dir($path_dir)) {
+			mkdir($path_dir, 0777, true);
+		}
         $ds = substr($path_dir, -1);
         if ($ds !== '/' && $ds !== '\\') {
             $path_dir .= '/';
