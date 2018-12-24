@@ -28,22 +28,21 @@ class Image
 
     //所有图片类型
     protected $types = [
-        1 => 'GIF',
-        2 => 'JPG',
-        3 => 'PNG',
-        4 => 'SWF',
-        5 => 'PSD',
-        6 => 'BMP',
-        7 => 'TIFF',
-        8 => 'TIFF',
-        9 => 'JPC',
-        10 => 'JP2',
-        11 => 'JPX',
-        12 => 'JB2',
-        13 => 'SWC',
-        14 => 'IFF',
-        15 => 'WBMP',
-        16 => 'XBM'
+        1 => 'gif',
+        2 => 'jpg',
+        3 => 'png',
+        4 => 'swf',
+        5 => 'psd',
+        6 => 'bmp',
+        7 => 'tiff',
+        8 => 'jpc',
+        9 => 'jp2',
+        10 => 'jpx',
+        11 => 'jb2',
+        12 => 'swc',
+        13 => 'iff',
+        14 => 'wbmp',
+        15 => 'xbm'
     ];
 
     //老图的宽度
@@ -112,6 +111,10 @@ class Image
      */
     public function compress($width, $height, $type = 1)
     {
+        if (empty($width) && empty($height)) {
+            $width  = $this->old_width;
+            $height = $this->old_height;
+         }
         switch ($type) {
             case 1:
             default:
