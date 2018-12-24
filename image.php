@@ -157,6 +157,9 @@ class Image
      */
     public function save($path_dir, $type = 2)
     {
+        if (!is_dir($path_dir)) {
+            mkdir($path_dir, 0777, true);
+        }
         $ds = substr($path_dir, -1);
         if ($ds !== '/' && $ds !== '\\') {
             $path_dir .= '/';
